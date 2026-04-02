@@ -278,6 +278,9 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 	span.SetAttributes(
 		attribute.String("app.product.name", found.Name),
 	)
+
+
+	
 	return found, nil
 }
 
