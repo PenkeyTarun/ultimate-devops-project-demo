@@ -292,10 +292,14 @@ func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProdu
 		if strings.Contains(strings.ToLower(product.Name), strings.ToLower(req.Query)) ||
 			strings.Contains(strings.ToLower(product.Description), strings.ToLower(req.Query)) {
 			result = append(result, product)
+
+
+
+			
 		}
 	}
 
-	
+
 	span.SetAttributes(
 		attribute.Int("app.products_search.count", len(result)),
 	)
