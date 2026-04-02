@@ -280,6 +280,8 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 	)
 
 
+	
+
 
 	return found, nil
 }
