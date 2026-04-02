@@ -313,11 +313,9 @@ func createClient(ctx context.Context, svcAddr string) (*grpc.ClientConn, error)
 	return grpc.DialContext(ctx, svcAddr,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
+
+		
 	)
-
-
-
-
 
 
 	
