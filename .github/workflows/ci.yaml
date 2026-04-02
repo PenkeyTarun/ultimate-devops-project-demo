@@ -79,8 +79,9 @@ jobs:
     
     updatek8s:
         runs-on: ubuntu-latest
+        needs: [build, code-quality, docker]
 
-        needs: docker
+        
 
         steps:
         - name: checkout code
@@ -90,8 +91,12 @@ jobs:
 
         - name: Update tag in kubernetes deployment manifest
           run: | 
-               sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}|" kubernetes/productcatalog/deploy.yaml
-        
+               sed -i '/image:/c\        image: '${{ secrets.DOCKER_USERNAME }}'/product-catalog-service:${{ github.run_id }}'' kubernetes/productcatalog/deploy.yaml
+        - name: Debug deploy file
+          run: |
+            echo "==== FILE AFTER UPDATE ===="
+            cat kubernetes/productcatalog/deploy.yaml
+            
         - name: Commit and push changes
           run: |
             git config --global user.email "abhishek@gmail.com"
