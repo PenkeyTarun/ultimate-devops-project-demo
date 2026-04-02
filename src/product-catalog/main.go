@@ -296,6 +296,8 @@ func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProdu
 
 
 			
+
+
 		}
 	}
 
