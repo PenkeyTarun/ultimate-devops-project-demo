@@ -280,7 +280,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 	)
 
 
-	
+
 	return found, nil
 }
 
@@ -294,6 +294,8 @@ func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProdu
 			result = append(result, product)
 		}
 	}
+
+	
 	span.SetAttributes(
 		attribute.Int("app.products_search.count", len(result)),
 	)
